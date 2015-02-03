@@ -8,9 +8,15 @@
 
 #import "TwitterClient.h"
 
-NSString * const kTwitterConsumerKey = @"bZ9yS4dKrnzx6eguQXcL4jcsL";
-NSString * const kTwitterConsumerSecret = @"QmNKQrYPYKvn1eI7xV1T8GlwLzjoNMyzELrQKbDhHk7stNGNWW";
-NSString * const kTwitterBaseUrl = @"https://api.twitter.com";
+NSString *const kTwitterConsumerKey = @"bZ9yS4dKrnzx6eguQXcL4jcsL";
+NSString *const kTwitterConsumerSecret = @"QmNKQrYPYKvn1eI7xV1T8GlwLzjoNMyzELrQKbDhHk7stNGNWW";
+NSString *const kTwitterBaseUrl = @"https://api.twitter.com";
+
+@interface TwitterClient ()
+
+@property(nonatomic, strong) void (^loginCompletion)(User *, NSError *);
+
+@end
 
 @implementation TwitterClient
 
@@ -24,6 +30,59 @@ NSString * const kTwitterBaseUrl = @"https://api.twitter.com";
         }
     });
     return instance;
+}
+
+- (void)loginWithCompletion:(void (^)(User *, NSError *))completion {
+
+    self.loginCompletion = completion;
+
+    [self.requestSerializer removeAccessToken];
+    [self fetchRequestTokenWithPath:@"oauth/request_token"
+                             method:@"GET"
+                        callbackURL:[NSURL URLWithString:@"cptwitterdemo://oauth"]
+                              scope:nil
+                            success:^(BDBOAuth1Credential *requestToken) {
+                                NSLog(@"Got request Token");
+
+                                NSURL *authURL = [NSURL URLWithString:[NSString stringWithFormat:
+                                        @"https://api.twitter.com/oauth/authorize?oauth_token=%@", requestToken.token]];
+
+                                [[UIApplication sharedApplication] openURL:authURL];
+                            }
+                            failure:^(NSError *error) {
+                                self.loginCompletion(nil, error);
+                            }];
+
+}
+
+
+- (void)openURL:(NSURL *)url {
+
+    [self fetchAccessTokenWithPath:@"oauth/access_token"
+                            method:@"POST"
+                      requestToken:[BDBOAuth1Credential
+                              credentialWithQueryString:url.query]
+
+                           success:^(BDBOAuth1Credential *accessToken) {
+                               NSLog(@"Got the access Token");
+
+                               [self.requestSerializer saveAccessToken:accessToken];
+
+                               [self GET:@"1.1/account/verify_credentials.json" parameters:nil
+                                                           success:^(AFHTTPRequestOperation *operation, id responseObject) {
+
+                                                               User *user = [[User alloc] initWithDictionary:responseObject];
+
+                                                               self.loginCompletion(user, nil);
+
+                                                           }
+                                                           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                                               self.loginCompletion(nil, error);
+                                                           }];
+                           }
+                           failure:^(NSError *error) {
+                               self.loginCompletion(nil, error);
+                           }];
 }
 
 @end

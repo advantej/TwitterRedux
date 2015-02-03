@@ -54,49 +54,7 @@
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-
-    [[TwitterClient sharedInstance] fetchAccessTokenWithPath:@"oauth/access_token"
-                                                      method:@"POST"
-                                                requestToken:[BDBOAuth1Credential
-                                                        credentialWithQueryString:url.query]
-
-     success:^(BDBOAuth1Credential *accessToken) {
-         NSLog(@"Got the access Token");
-
-         [[TwitterClient sharedInstance].requestSerializer saveAccessToken:accessToken];
-
-         [[TwitterClient sharedInstance] GET:@"1.1/account/verify_credentials.json" parameters:nil
-                                     success:^(AFHTTPRequestOperation *operation, id responseObject) {
-
-                                         User *user = [[User alloc] initWithDictionary:responseObject];
-                                         NSLog(@"User name : %@", user.name);
-                                         NSLog(@"User screen name : %@", user.screenName);
-
-                                     }
-                                     failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                         NSLog(@"Failed to get Current user");
-                                     }];
-
-         [[TwitterClient sharedInstance] GET:@"1.1/statuses/home_timeline.json" parameters:nil
-                                     success:^(AFHTTPRequestOperation *operation, id responseObject) {
-
-                                         NSArray *tweets = [Tweet tweetsWithArray:responseObject];
-
-                                         for (Tweet *tweet in tweets) {
-                                             NSLog(@"Tweet : %@, created at %@", tweet.text, tweet.createdAt);
-                                         }
-
-                                     }
-                                     failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                         NSLog(@"Failed to get tweets");
-                                     }];
-
-     }
-     failure:^(NSError *error) {
-        NSLog(@"Failed to Get the access Token");
-
-     }];
-
+    [[TwitterClient sharedInstance] openURL:url];
     return YES;
 }
 

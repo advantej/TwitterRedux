@@ -26,24 +26,16 @@
 }
 
 - (IBAction)onLogin:(id)sender {
-    TwitterClient *twitterClient = [TwitterClient sharedInstance];
+    [[TwitterClient sharedInstance] loginWithCompletion:^(User *user, NSError *error) {
+       if (user != nil) {
+           //Modally present the tweets view
+           NSLog(@"Welcome to %@", user.name);
 
-    [twitterClient.requestSerializer removeAccessToken];
-    [twitterClient fetchRequestTokenWithPath:@"oauth/request_token"
-                                      method:@"GET"
-                                 callbackURL:[NSURL URLWithString:@"cptwitterdemo://oauth"]
-                                       scope:nil
-                                     success:^(BDBOAuth1Credential *requestToken) {
-                                         NSLog(@"Got request Token");
-
-                                         NSURL *authURL = [NSURL URLWithString:[NSString stringWithFormat:
-                                         @"https://api.twitter.com/oauth/authorize?oauth_token=%@", requestToken.token]];
-
-                                         [[UIApplication sharedApplication] openURL:authURL];
-                                     }
-                                     failure:^(NSError *error) {
-                                         NSLog(@"Error getting request Token");
-                                     }];
+       } else {
+           // Present error view
+           NSLog(@"Error %@", error.description);
+       }
+    }];
 }
 
 /*
