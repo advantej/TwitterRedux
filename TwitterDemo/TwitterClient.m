@@ -7,6 +7,7 @@
 //
 
 #import "TwitterClient.h"
+#import "Tweet.h"
 
 NSString *const kTwitterConsumerKey = @"bZ9yS4dKrnzx6eguQXcL4jcsL";
 NSString *const kTwitterConsumerSecret = @"QmNKQrYPYKvn1eI7xV1T8GlwLzjoNMyzELrQKbDhHk7stNGNWW";
@@ -72,7 +73,7 @@ NSString *const kTwitterBaseUrl = @"https://api.twitter.com";
                                                            success:^(AFHTTPRequestOperation *operation, id responseObject) {
 
                                                                User *user = [[User alloc] initWithDictionary:responseObject];
-
+                                                               [User setCurrentUser:user]; //persist the user
                                                                self.loginCompletion(user, nil);
 
                                                            }
@@ -84,5 +85,18 @@ NSString *const kTwitterBaseUrl = @"https://api.twitter.com";
                                self.loginCompletion(nil, error);
                            }];
 }
+
+- (void)homeTimelineWithParams:(NSDictionary *)params completion:(void (^)(NSArray *tweets, NSError *error))completion {
+    [self GET:@"1.1/statuses/home_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+
+        NSArray *tweets = [Tweet tweetsWithArray:responseObject];
+        completion(tweets, nil);
+
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        completion(nil, error);
+    }];
+
+}
+
 
 @end

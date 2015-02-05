@@ -15,6 +15,8 @@
 		8B2554B61A816E6000DDA2B2 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B2554B41A816E6000DDA2B2 /* LoginViewController.m */; };
 		8B2554B71A816E6000DDA2B2 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B2554B51A816E6000DDA2B2 /* LoginViewController.xib */; };
 		8B2554BA1A816F0A00DDA2B2 /* TwitterClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B2554B91A816F0A00DDA2B2 /* TwitterClient.m */; };
+		8B2554BE1A8420D800DDA2B2 /* TweetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B2554BC1A8420D800DDA2B2 /* TweetsViewController.m */; };
+		8B2554BF1A8420D800DDA2B2 /* TweetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B2554BD1A8420D800DDA2B2 /* TweetsViewController.xib */; };
 		B320A6BCD44831EADC5FCF7F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 059A7CCC197C809A6D116295 /* libPods.a */; };
 		D527A82728F6328596E9A329 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D527A05C320B703502838E95 /* User.m */; };
 		D527AAC82C263B56349D130D /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = D527A07A8004DBDA54B77355 /* Tweet.m */; };
@@ -47,6 +49,9 @@
 		8B2554B51A816E6000DDA2B2 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		8B2554B81A816F0A00DDA2B2 /* TwitterClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterClient.h; sourceTree = "<group>"; };
 		8B2554B91A816F0A00DDA2B2 /* TwitterClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterClient.m; sourceTree = "<group>"; };
+		8B2554BB1A8420D800DDA2B2 /* TweetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetsViewController.h; sourceTree = "<group>"; };
+		8B2554BC1A8420D800DDA2B2 /* TweetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetsViewController.m; sourceTree = "<group>"; };
+		8B2554BD1A8420D800DDA2B2 /* TweetsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetsViewController.xib; sourceTree = "<group>"; };
 		A7D18626C6FC86FA99F0B58E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		AD045E7F966EB682E4279904 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D527A05C320B703502838E95 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
@@ -116,6 +121,9 @@
 				8B2554B81A816F0A00DDA2B2 /* TwitterClient.h */,
 				8B2554B91A816F0A00DDA2B2 /* TwitterClient.m */,
 				D527A858743A7FA4B47A167E /* Models */,
+				8B2554BB1A8420D800DDA2B2 /* TweetsViewController.h */,
+				8B2554BC1A8420D800DDA2B2 /* TweetsViewController.m */,
+				8B2554BD1A8420D800DDA2B2 /* TweetsViewController.xib */,
 			);
 			path = TwitterDemo;
 			sourceTree = "<group>";
@@ -248,6 +256,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B2554BF1A8420D800DDA2B2 /* TweetsViewController.xib in Resources */,
 				8B25549E1A80564600DDA2B2 /* LaunchScreen.xib in Resources */,
 				8B25549B1A80564600DDA2B2 /* Images.xcassets in Resources */,
 				8B2554B71A816E6000DDA2B2 /* LoginViewController.xib in Resources */,
@@ -307,6 +316,7 @@
 				8B2554B61A816E6000DDA2B2 /* LoginViewController.m in Sources */,
 				D527AAC82C263B56349D130D /* Tweet.m in Sources */,
 				D527A82728F6328596E9A329 /* User.m in Sources */,
+				8B2554BE1A8420D800DDA2B2 /* TweetsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
