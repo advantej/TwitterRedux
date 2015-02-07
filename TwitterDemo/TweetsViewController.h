@@ -10,4 +10,6 @@
 
 @interface TweetsViewController : UIViewController
 
++ (UINavigationController *) getWrappedTweetsController;
+
 @end

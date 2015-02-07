@@ -30,7 +30,7 @@
     [[TwitterClient sharedInstance] loginWithCompletion:^(User *user, NSError *error) {
        if (user != nil) {
            //Modally present the tweets view
-           [self presentViewController:[[TweetsViewController alloc] init] animated:YES completion:nil];
+           [self presentViewController:[TweetsViewController getWrappedTweetsController] animated:YES completion:nil];
 
        } else {
            // Present error view
@@ -38,15 +38,5 @@
        }
     }];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
