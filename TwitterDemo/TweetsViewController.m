@@ -18,9 +18,20 @@
 
 @property (nonatomic, strong) NSArray *tweets;
 
+@property (nonatomic, strong) TweetCell *dummyCell;
+
 @end
 
 @implementation TweetsViewController
+
+- (TweetCell *)dummyCell {
+
+    if (!_dummyCell) {
+        _dummyCell = [self.tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
+    }
+    return _dummyCell;
+
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -60,6 +71,24 @@
     TweetCell *tweetCell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
     tweetCell.tweet = self.tweets[indexPath.row];
     return tweetCell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self configureCell:self.dummyCell forRowAtIndexPath:indexPath];
+    [self.dummyCell layoutIfNeeded];
+
+    CGSize size = [self.dummyCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    return size.height+1;
+}
+
+- (void)configureCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([cell isKindOfClass:[TweetCell class]])
+    {
+        TweetCell *textCell = (TweetCell *)cell;
+        textCell.tweet = self.tweets[indexPath.row];
+    }
 }
 
 #pragma mark - TableView Delegate Methods
