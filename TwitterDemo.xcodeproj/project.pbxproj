@@ -10,6 +10,8 @@
 		8B2554AA1A80564600DDA2B2 /* TwitterDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B2554A91A80564600DDA2B2 /* TwitterDemoTests.m */; };
 		8B25550A1A86AD6D00DDA2B2 /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B2555081A86AD6D00DDA2B2 /* TweetCell.m */; };
 		8B25550B1A86AD6D00DDA2B2 /* TweetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B2555091A86AD6D00DDA2B2 /* TweetCell.xib */; };
+		8B25550F1A86DBD300DDA2B2 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B25550D1A86DBD300DDA2B2 /* ComposeViewController.m */; };
+		8B2555101A86DBD300DDA2B2 /* ComposeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B25550E1A86DBD300DDA2B2 /* ComposeViewController.xib */; };
 		B320A6BCD44831EADC5FCF7F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 059A7CCC197C809A6D116295 /* libPods.a */; };
 		D527A060275C09B4A49476BE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D527A980A7B5312B856E35F9 /* main.m */; };
 		D527A21E3FA45023FF334E7B /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = D527AB1DF17231ABACC58488 /* Tweet.m */; };
@@ -43,6 +45,9 @@
 		8B2555071A86AD6D00DDA2B2 /* TweetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetCell.h; sourceTree = "<group>"; };
 		8B2555081A86AD6D00DDA2B2 /* TweetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetCell.m; sourceTree = "<group>"; };
 		8B2555091A86AD6D00DDA2B2 /* TweetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetCell.xib; sourceTree = "<group>"; };
+		8B25550C1A86DBD300DDA2B2 /* ComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
+		8B25550D1A86DBD300DDA2B2 /* ComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
+		8B25550E1A86DBD300DDA2B2 /* ComposeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComposeViewController.xib; sourceTree = "<group>"; };
 		A7D18626C6FC86FA99F0B58E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		AD045E7F966EB682E4279904 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D527A092494108F19C66C64B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -186,6 +191,9 @@
 				D527AD0B17233F36CCC2F1EA /* TweetsViewController.h */,
 				D527A31796989F84E2EC025C /* TweetsViewController.m */,
 				D527A518C91DCC724E9F9405 /* TweetsViewController.xib */,
+				8B25550C1A86DBD300DDA2B2 /* ComposeViewController.h */,
+				8B25550D1A86DBD300DDA2B2 /* ComposeViewController.m */,
+				8B25550E1A86DBD300DDA2B2 /* ComposeViewController.xib */,
 			);
 			path = TwitterDemo;
 			sourceTree = "<group>";
@@ -273,6 +281,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D527A8D0995CE920EFCF6756 /* Images.xcassets in Resources */,
+				8B2555101A86DBD300DDA2B2 /* ComposeViewController.xib in Resources */,
 				8B25550B1A86AD6D00DDA2B2 /* TweetCell.xib in Resources */,
 				D527AE9224A12694833E297F /* LaunchScreen.xib in Resources */,
 				D527AAD3228E8D027D5B5811 /* LoginViewController.xib in Resources */,
@@ -330,6 +339,7 @@
 				D527ACE38AB6BBE1D0ABAF2E /* AppDelegate.m in Sources */,
 				D527A060275C09B4A49476BE /* main.m in Sources */,
 				D527A66CCF8BACBDE84CF47A /* LoginViewController.m in Sources */,
+				8B25550F1A86DBD300DDA2B2 /* ComposeViewController.m in Sources */,
 				D527A4540CCF1BB629C2A8C3 /* TwitterClient.m in Sources */,
 				D527A21E3FA45023FF334E7B /* Tweet.m in Sources */,
 				D527AA93C0747BBD6791D31F /* User.m in Sources */,

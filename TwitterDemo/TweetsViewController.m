@@ -10,6 +10,7 @@
 #import "User.h"
 #import "TwitterClient.h"
 #import "TweetCell.h"
+#import "ComposeViewController.h"
 
 @interface TweetsViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -95,6 +96,9 @@
 - (void)onNewTweet:(id)onNewTweet {
     // TODO show the compose view controller
 
+    UINavigationController *nvc = [ComposeViewController getWrappedComposeViewController];
+    [self.navigationController presentViewController:nvc animated:YES completion:nil];
+//    [self.navigationController pushViewController:[[ComposeViewController alloc] init] animated:YES];
 }
 
 @end
