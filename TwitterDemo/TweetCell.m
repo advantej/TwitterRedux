@@ -8,6 +8,7 @@
 
 #import "TweetCell.h"
 #import "UIImageView+AFNetworking.h"
+#import "NSDate+TimeAgo.h"
 
 @interface TweetCell()
 
@@ -39,6 +40,7 @@
     self.twitterHandleLabel.text = [NSString stringWithFormat:@"@%@", self.tweet.author.screenName];
     self.tweetLabel.text = self.tweet.text;
     [self.userImageView setImageWithURL:[NSURL URLWithString: self.tweet.author.profileImageUrl]];
+    self.timeLabel.text = [self.tweet.createdAt timeAgoSimple];
     //TODO add more
 
 }

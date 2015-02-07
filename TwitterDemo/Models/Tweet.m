@@ -15,6 +15,7 @@
 
     if (self) {
 
+        self.idStr = dictionary[@"id_str"];
         self.text = dictionary[@"text"];
         self.author = [[User alloc] initWithDictionary:dictionary[@"user"]];
 
