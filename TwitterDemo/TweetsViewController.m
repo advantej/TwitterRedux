@@ -11,7 +11,7 @@
 #import "TwitterClient.h"
 #import "TweetCell.h"
 
-@interface TweetsViewController () <UITableViewDataSource>
+@interface TweetsViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong) NSArray *tweets;
@@ -23,8 +23,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sign Out" style:UIBarButtonItemStylePlain target:self action:@selector(onSignOut:)];
+    [self setUpNavigationBar];
 
+    self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
 
@@ -35,6 +36,8 @@
         [self.tableView reloadData];
     }];
 }
+
+
 #pragma mark - TableView DataSource Delegate Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -49,12 +52,31 @@
 }
 
 #pragma mark - TableView Delegate Methods
-//TBD
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 
 #pragma mark - private methods
 
+- (void)setUpNavigationBar {
+    self.title = @"Home";
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sign Out" style:UIBarButtonItemStylePlain target:self action:@selector(onSignOut:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"New" style:UIBarButtonItemStylePlain target:self action:@selector(onNewTweet:)];
+
+    [self.navigationItem.leftBarButtonItem setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]} forState:UIControlStateNormal];
+    [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]} forState:UIControlStateNormal];
+
+}
+
 - (void)onSignOut:(id)onSignOut {
     [User logout];
+}
+
+- (void)onNewTweet:(id)onNewTweet {
+    // TODO show the compose view controller
+
 }
 
 @end

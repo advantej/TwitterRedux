@@ -31,6 +31,8 @@
     if (user != nil) {
         NSLog(@"Welcome %@", user.name);
         UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:[[TweetsViewController alloc] init]];
+        nvc.navigationBar.barTintColor = [UIColor colorWithRed:121.0 / 255.0 green:224.0 / 255.0 blue:237.0 / 255.0 alpha:1];
+        nvc.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
         self.window.rootViewController = nvc;
     } else {
         NSLog(@"User not loggged in");

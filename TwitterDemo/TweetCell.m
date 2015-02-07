@@ -7,6 +7,7 @@
 //
 
 #import "TweetCell.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface TweetCell()
 
@@ -37,6 +38,7 @@
     self.userNameLabel.text = self.tweet.author.name;
     self.twitterHandleLabel.text = [NSString stringWithFormat:@"@%@", self.tweet.author.screenName];
     self.tweetLabel.text = self.tweet.text;
+    [self.userImageView setImageWithURL:[NSURL URLWithString: self.tweet.author.profileImageUrl]];
     //TODO add more
 
 }
