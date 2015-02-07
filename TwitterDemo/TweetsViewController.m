@@ -13,6 +13,7 @@
 
 @interface TweetsViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) UIRefreshControl *uiRefreshControl;
 
 @property (nonatomic, strong) NSArray *tweets;
 
@@ -23,18 +24,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.uiRefreshControl = [[UIRefreshControl alloc] init];
+    [self.uiRefreshControl addTarget:self action:@selector(refreshTweets) forControlEvents:UIControlEventValueChanged];
+
     [self setUpNavigationBar];
 
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+    [self.tableView insertSubview:self.uiRefreshControl atIndex:0];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"TweetCell" bundle:nil] forCellReuseIdentifier:@"TweetCell"];
 
-    [[TwitterClient sharedInstance] homeTimelineWithParams:nil completion:^(NSArray *tweets, NSError *error) {
-        self.tweets = tweets;
-        [self.tableView reloadData];
-    }];
+    [self refreshTweets];
+
 }
 
 + (UINavigationController *) getWrappedTweetsController {
@@ -66,6 +69,14 @@
 
 
 #pragma mark - private methods
+
+- (void)refreshTweets {
+    [[TwitterClient sharedInstance] homeTimelineWithParams:nil completion:^(NSArray *tweets, NSError *error) {
+        self.tweets = tweets;
+        [self.tableView reloadData];
+        [self.uiRefreshControl endRefreshing];
+    }];
+}
 
 - (void)setUpNavigationBar {
     self.title = @"Home";
