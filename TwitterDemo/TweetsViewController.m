@@ -9,9 +9,12 @@
 #import "TweetsViewController.h"
 #import "User.h"
 #import "TwitterClient.h"
-#import "Tweet.h"
+#import "TweetCell.h"
 
-@interface TweetsViewController ()
+@interface TweetsViewController () <UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (nonatomic, strong) NSArray *tweets;
 
 @end
 
@@ -20,30 +23,38 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sign Out" style:UIBarButtonItemStylePlain target:self action:@selector(onSignOut:)];
+
+    self.tableView.dataSource = self;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+
+    [self.tableView registerNib:[UINib nibWithNibName:@"TweetCell" bundle:nil] forCellReuseIdentifier:@"TweetCell"];
+
     [[TwitterClient sharedInstance] homeTimelineWithParams:nil completion:^(NSArray *tweets, NSError *error) {
-        for (Tweet *tweet in tweets) {
-            NSLog(@"%@", tweet.text);
-        }
+        self.tweets = tweets;
+        [self.tableView reloadData];
     }];
 }
+#pragma mark - TableView DataSource Delegate Methods
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.tweets.count;
 }
 
-- (IBAction)onLogout:(id)sender {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    TweetCell *tweetCell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
+    tweetCell.tweet = self.tweets[indexPath.row];
+    return tweetCell;
+}
+
+#pragma mark - TableView Delegate Methods
+//TBD
+
+#pragma mark - private methods
+
+- (void)onSignOut:(id)onSignOut {
     [User logout];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
