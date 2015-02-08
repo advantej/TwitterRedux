@@ -58,7 +58,7 @@
 
 + (UINavigationController *) getWrappedTweetsController {
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:[[TweetsViewController alloc] init]];
-    nvc.navigationBar.barTintColor = [UIColor colorWithRed:19.0 / 255.0 green:207.0 / 255.0 blue:232.0 / 255.0 alpha:1];
+    nvc.navigationBar.barTintColor = [UIColor colorWithRed:64.0 / 255.0 green:153.0 / 255.0 blue:255.0 / 255.0 alpha:1];
     nvc.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
     return nvc;
 }
