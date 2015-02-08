@@ -49,6 +49,7 @@
 
     [[TwitterClient sharedInstance] postTweetWithStatus:self.tweetTextView.text replyToTweet:self.replyToTweet completion:^(Tweet *tweet, NSError *error) {
         if (tweet != nil) {
+            [self.delegate successFullyPostedTweet:tweet];
             [self dismissViewControllerAnimated:YES completion:nil];
         }
     }];

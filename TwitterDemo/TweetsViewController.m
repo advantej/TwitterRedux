@@ -13,7 +13,7 @@
 #import "ComposeViewController.h"
 #import "TweetDetailViewController.h"
 
-@interface TweetsViewController () <UITableViewDataSource, UITableViewDelegate, TweetCellDelegate>
+@interface TweetsViewController () <UITableViewDataSource, UITableViewDelegate, TweetCellDelegate, ComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *uiRefreshControl;
 
@@ -116,6 +116,12 @@
     [self.navigationController pushViewController:composeViewController animated:YES];
 }
 
+#pragma mark - ComposeViewController delegate Methods
+
+- (void)successFullyPostedTweet:(Tweet *)tweet {
+    [self.tweets insertObject:tweet atIndex:0];
+    [self.tableView reloadData];
+}
 
 #pragma mark - private methods
 
@@ -164,7 +170,9 @@
 }
 
 - (void)onNewTweet:(id)onNewTweet {
-    [self.navigationController presentViewController:[[ComposeViewController alloc] init] animated:YES completion:nil];
+    ComposeViewController *composeViewController = [[ComposeViewController alloc] init];
+    composeViewController.delegate = self;
+    [self.navigationController presentViewController:composeViewController animated:YES completion:nil];
 }
 
 - (void) displayError:(NSError *)error {
