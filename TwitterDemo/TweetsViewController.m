@@ -17,7 +17,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *uiRefreshControl;
 
-@property (nonatomic, strong) NSArray *tweets;
+@property (nonatomic, strong) NSMutableArray *tweets;
 
 @property (nonatomic, strong) TweetCell *dummyCell;
 
@@ -36,6 +36,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    self.tweets = [NSMutableArray array];
 
     self.uiRefreshControl = [[UIRefreshControl alloc] init];
     [self.uiRefreshControl addTarget:self action:@selector(refreshTweets) forControlEvents:UIControlEventValueChanged];
@@ -67,6 +69,10 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    if (indexPath.row + 3 == self.tweets.count) {
+        [self getOlderTweets];
+    }
 
     TweetCell *tweetCell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
     tweetCell.tweet = self.tweets[indexPath.row];
@@ -115,9 +121,31 @@
 
 - (void)refreshTweets {
     [[TwitterClient sharedInstance] homeTimelineWithParams:nil completion:^(NSArray *tweets, NSError *error) {
-        self.tweets = tweets;
+        if (error != nil) {
+            [self displayError:error];
+            return;
+        }
+
+        [self.tweets removeAllObjects];
+        [self.tweets addObjectsFromArray:tweets];
         [self.tableView reloadData];
         [self.uiRefreshControl endRefreshing];
+    }];
+}
+
+- (void)getOlderTweets {
+
+    Tweet *lastTweet = self.tweets[self.tweets.count - 1];
+
+    [[TwitterClient sharedInstance] homeTimelineWithParams:@{@"max_id": lastTweet.idStr} completion:^(NSArray *tweets, NSError *error) {
+
+        if (error != nil) {
+            [self displayError:error];
+            return;
+        }
+
+        [self.tweets addObjectsFromArray:tweets];
+        [self.tableView reloadData];
     }];
 }
 
@@ -137,6 +165,15 @@
 
 - (void)onNewTweet:(id)onNewTweet {
     [self.navigationController presentViewController:[[ComposeViewController alloc] init] animated:YES completion:nil];
+}
+
+- (void) displayError:(NSError *)error {
+    UIAlertView * alert =[[UIAlertView alloc ] initWithTitle:@"Error"
+                                                     message:error.localizedDescription
+                                                    delegate:self
+                                           cancelButtonTitle:@"Ok"
+                                           otherButtonTitles:nil];
+    [alert show];
 }
 
 @end
