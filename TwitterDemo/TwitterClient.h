@@ -22,7 +22,7 @@
 
 - (void)getSingleTweetWithId:(NSString *)tweetId completion:(void (^)(Tweet *tweet, NSError *error))completion;
 
-- (void)postTweetWithStatus:(NSString *) tweet completion:(void (^)(Tweet *tweet, NSError *error))completion;
+- (void)postTweetWithStatus:(NSString *)status replyToTweet:(Tweet *)tweet completion:(void (^)(Tweet *tweet, NSError *error))completion;
 
 - (void)favoriteTweetWithId:(NSString *)tweetId completion:(void (^)(Tweet *tweet, NSError *error))completion;
 

@@ -87,7 +87,7 @@ NSString *const kTwitterBaseUrl = @"https://api.twitter.com";
 }
 
 - (void)homeTimelineWithParams:(NSDictionary *)params completion:(void (^)(NSArray *tweets, NSError *error))completion {
-    [self GET:@"1.1/statuses/home_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [self GET:@"1.1/statuses/home_timeline.json?count=200" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
 
         NSArray *tweets = [Tweet tweetsWithArray:responseObject];
         completion(tweets, nil);
@@ -110,9 +110,13 @@ NSString *const kTwitterBaseUrl = @"https://api.twitter.com";
     }];
 }
 
-- (void)postTweetWithStatus:(NSString *)tweet completion:(void (^)(Tweet *tweet, NSError *error))completion {
+- (void)postTweetWithStatus:(NSString *)status replyToTweet:(Tweet *)tweet completion:(void (^)(Tweet *tweet, NSError *error))completion {
 
-    NSDictionary *params = @{@"status" : tweet};
+    NSMutableDictionary *params = [@{@"status" : status} mutableCopy];
+
+    if (tweet != nil) {
+        [params addEntriesFromDictionary:@{@"in_reply_to_status_id" : tweet.idStr}];
+    }
 
     [self POST:@"1.1/statuses/update.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         Tweet *tweet1 = [[Tweet alloc] initWithDictionary:responseObject];

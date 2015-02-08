@@ -48,10 +48,6 @@
     [self.tableView insertSubview:self.uiRefreshControl atIndex:0];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"TweetCell" bundle:nil] forCellReuseIdentifier:@"TweetCell"];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
     [self refreshTweets];
 }
 

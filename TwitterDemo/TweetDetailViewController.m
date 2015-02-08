@@ -10,6 +10,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "NSDate+TimeAgo.h"
 #import "TwitterClient.h"
+#import "ComposeViewController.h"
 
 @interface TweetDetailViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *userImageView;
@@ -91,6 +92,9 @@
 
 - (void) onReplyPressed {
 
+    ComposeViewController *composeViewController = [[ComposeViewController alloc] init];
+    composeViewController.replyToTweet = self.tweet;
+    [self.navigationController presentViewController:composeViewController animated:YES completion:nil];
 }
 
 

@@ -19,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UITextView *tweetTextView;
 @property (weak, nonatomic) IBOutlet UILabel *userHandleLabel;
 
+@property (nonatomic, strong) NSString *replyToUserScreenName;
+
 @end
 
 @implementation ComposeViewController
@@ -45,7 +47,7 @@
 
 - (IBAction)onTweetButtonPressed:(id)sender {
 
-    [[TwitterClient sharedInstance] postTweetWithStatus:self.tweetTextView.text completion:^(Tweet *tweet, NSError *error) {
+    [[TwitterClient sharedInstance] postTweetWithStatus:self.tweetTextView.text replyToTweet:self.replyToTweet completion:^(Tweet *tweet, NSError *error) {
         if (tweet != nil) {
             [self dismissViewControllerAnimated:YES completion:nil];
         }
@@ -64,6 +66,11 @@
         [self.userImageView setImageWithURL:[NSURL URLWithString:user.profileImageUrl]];
     } else {
         // Terribly wrong situation. Panic
+    }
+
+    if (self.replyToTweet != nil) {
+        self.replyToUserScreenName = self.replyToTweet.author.screenName;
+        self.tweetTextView.text = [NSString stringWithFormat:@"@%@", self.replyToUserScreenName];
     }
 
 }
