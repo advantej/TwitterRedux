@@ -6,9 +6,18 @@
 //  Copyright (c) 2015 Yahoo!. All rights reserved.
 //
 
+#import "UIImageView+AFNetworking.h"
 #import "ComposeViewController.h"
+#import "TwitterClient.h"
 
-@interface ComposeViewController ()
+@interface ComposeViewController () <UITextViewDelegate>
+@property (weak, nonatomic) IBOutlet UIImageView *crossImageView;
+@property (weak, nonatomic) IBOutlet UIButton *tweetButton;
+@property (weak, nonatomic) IBOutlet UILabel *charCountLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *userImageView;
+@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
+@property (weak, nonatomic) IBOutlet UITextView *tweetTextView;
+@property (weak, nonatomic) IBOutlet UILabel *userHandleLabel;
 
 @end
 
@@ -17,35 +26,48 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self setUpNavigationBar];
+    [self setUpBackButton];
+    [self setUpUserDetails];
+
+    self.tweetTextView.delegate = self;
+    self.charCountLabel.text = @"140";
+
+    [self.tweetTextView becomeFirstResponder];
 }
 
-+ (UINavigationController *) getWrappedComposeViewController {
-    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:[[ComposeViewController alloc] init]];
-    nvc.navigationBar.barTintColor = [UIColor colorWithRed:19.0 / 255.0 green:207.0 / 255.0 blue:232.0 / 255.0 alpha:1];
-    nvc.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
-    return nvc;
+#pragma mark - TextView delegate methods
+
+- (void)textViewDidChange:(UITextView *)textView {
+    self.charCountLabel.text = [NSString stringWithFormat:@"%u",140 - textView.text.length];
 }
 
 #pragma mark - Private Methods
 
-- (void)setUpNavigationBar {
-    self.title = @"Tweet";
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"X" style:UIBarButtonItemStylePlain target:self action:@selector(onBack:)];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Tweet" style:UIBarButtonItemStylePlain target:self action:@selector(onTweet:)];
-
-    [self.navigationItem.leftBarButtonItem setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]} forState:UIControlStateNormal];
-    [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]} forState:UIControlStateNormal];
-
-}
-
-- (void)onTweet:(id)onTweet {
+- (IBAction)onTweetButtonPressed:(id)sender {
     //TODO Post Tweet
+}
+
+- (void) onBackButton {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)setUpUserDetails {
+    User *user = [User currentUser];
+    if (user) {
+        self.userNameLabel.text = user.name;
+        self.userHandleLabel.text = user.screenName;
+        [self.userImageView setImageWithURL:[NSURL URLWithString:user.profileImageUrl]];
+    } else {
+        // Terribly wrong situation. Panic
+    }
 
 }
 
-- (void)onBack:(id)onBack {
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+- (void) setUpBackButton {
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onBackButton)];
+    [self.crossImageView addGestureRecognizer:singleTap];
+    [self.crossImageView setMultipleTouchEnabled:YES];
+    [self.crossImageView setUserInteractionEnabled:YES];
 }
 
 

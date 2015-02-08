@@ -123,11 +123,7 @@
 }
 
 - (void)onNewTweet:(id)onNewTweet {
-    // TODO show the compose view controller
-
-    UINavigationController *nvc = [ComposeViewController getWrappedComposeViewController];
-    [self.navigationController presentViewController:nvc animated:YES completion:nil];
-//    [self.navigationController pushViewController:[[ComposeViewController alloc] init] animated:YES];
+    [self.navigationController presentViewController:[[ComposeViewController alloc] init] animated:YES completion:nil];
 }
 
 @end

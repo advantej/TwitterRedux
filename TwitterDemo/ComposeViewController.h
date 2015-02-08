@@ -10,6 +10,4 @@
 
 @interface ComposeViewController : UIViewController
 
-+ (UINavigationController *) getWrappedComposeViewController;
-
 @end
