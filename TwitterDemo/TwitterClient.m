@@ -98,11 +98,64 @@ NSString *const kTwitterBaseUrl = @"https://api.twitter.com";
 
 }
 
+- (void)getSingleTweetWithId:(NSString *)tweetId completion:(void (^)(Tweet *tweet, NSError *error))completion {
+
+    NSDictionary *params = @{@"id" : tweetId};
+
+    [self GET:@"1.1/statuses/show.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        Tweet *tweet1 = [[Tweet alloc] initWithDictionary:responseObject];
+        completion(tweet1, nil);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        completion(nil, error);
+    }];
+}
+
 - (void)postTweetWithStatus:(NSString *)tweet completion:(void (^)(Tweet *tweet, NSError *error))completion {
 
     NSDictionary *params = @{@"status" : tweet};
 
     [self POST:@"1.1/statuses/update.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        Tweet *tweet1 = [[Tweet alloc] initWithDictionary:responseObject];
+        completion(tweet1, nil);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        completion(nil, error);
+    }];
+}
+
+//Note from the docs : The immediately returned status may not indicate the resultant favorited status of the tweet.
+//A 200 OK response from this method will indicate whether the intended action was successful or not.
+- (void)favoriteTweetWithId:(NSString *)tweetId completion:(void (^)(Tweet *tweet, NSError *error))completion {
+
+    NSDictionary *params = @{@"id" : tweetId};
+
+    [self POST:@"1.1/favorites/create.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        Tweet *tweet1 = [[Tweet alloc] initWithDictionary:responseObject];
+        completion(tweet1, nil);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        completion(nil, error);
+    }];
+}
+
+
+//Note from the docs : The immediately returned status may not indicate the resultant favorited status of the tweet.
+//A 200 OK response from this method will indicate whether the intended action was successful or not.
+- (void)unFavoriteTweetWithId:(NSString *)tweetId completion:(void (^)(Tweet *tweet, NSError *error))completion {
+
+    NSDictionary *params = @{@"id" : tweetId};
+
+    [self POST:@"1.1/favorites/destroy.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        Tweet *tweet1 = [[Tweet alloc] initWithDictionary:responseObject];
+        completion(tweet1, nil);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        completion(nil, error);
+    }];
+}
+
+- (void)reTweetTweetWithId:(NSString *)tweetId completion:(void (^)(Tweet *tweet, NSError *error))completion {
+
+    NSString *url = [NSString stringWithFormat:@"1.1/statuses/retweet/%@.json", tweetId];
+
+    [self POST:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         Tweet *tweet1 = [[Tweet alloc] initWithDictionary:responseObject];
         completion(tweet1, nil);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

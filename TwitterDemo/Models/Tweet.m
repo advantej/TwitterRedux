@@ -20,6 +20,8 @@
         self.author = [[User alloc] initWithDictionary:dictionary[@"user"]];
         self.retweetCount = [dictionary[@"retweet_count"] integerValue];
         self.favoriteCount = [dictionary[@"favorite_count"] integerValue];
+        self.favorited = [dictionary[@"favorited"] boolValue];
+        self.retweeted = [dictionary[@"retweeted"] boolValue];
 
         NSString *createdAtString = dictionary[@"created_at"];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
