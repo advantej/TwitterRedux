@@ -36,6 +36,7 @@
 
     self.currentUser = [User currentUser];
 
+    self.canRetweet = YES;
     if ([self.tweet.author.idStr isEqualToString:self.currentUser.idStr]) {
         self.canRetweet = NO;
     }
