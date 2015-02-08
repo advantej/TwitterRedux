@@ -38,7 +38,7 @@
 #pragma mark - TextView delegate methods
 
 - (void)textViewDidChange:(UITextView *)textView {
-    self.charCountLabel.text = [NSString stringWithFormat:@"%u",140 - textView.text.length];
+    self.charCountLabel.text = [NSString stringWithFormat:@"%lu",140 - textView.text.length];
 }
 
 #pragma mark - Private Methods

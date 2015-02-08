@@ -38,8 +38,8 @@
     self.tweetLabel.text = self.tweet.text;
     [self.userImageView setImageWithURL:[NSURL URLWithString: self.tweet.author.profileImageUrl]];
     self.tweetTimeLabel.text = [self.tweet.createdAt timeAgo];
-    self.numRetweetsLabel.text = [NSString stringWithFormat:@"%d", self.tweet.retweetCount];
-    self.numFavoriteLabel.text = [NSString stringWithFormat:@"%d", self.tweet.favoriteCount];
+    self.numRetweetsLabel.text = [NSString stringWithFormat:@"%ld", (long)self.tweet.retweetCount];
+    self.numFavoriteLabel.text = [NSString stringWithFormat:@"%ld", (long)self.tweet.favoriteCount];
 }
 
 
