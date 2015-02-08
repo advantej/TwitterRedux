@@ -47,10 +47,13 @@
     [self.tableView insertSubview:self.uiRefreshControl atIndex:0];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"TweetCell" bundle:nil] forCellReuseIdentifier:@"TweetCell"];
-
-    [self refreshTweets];
-
 }
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self refreshTweets];
+}
+
 
 + (UINavigationController *) getWrappedTweetsController {
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:[[TweetsViewController alloc] init]];

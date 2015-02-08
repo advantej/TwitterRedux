@@ -44,7 +44,12 @@
 #pragma mark - Private Methods
 
 - (IBAction)onTweetButtonPressed:(id)sender {
-    //TODO Post Tweet
+
+    [[TwitterClient sharedInstance] postTweetWithStatus:self.tweetTextView.text completion:^(Tweet *tweet, NSError *error) {
+        if (tweet != nil) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+    }];
 }
 
 - (void) onBackButton {
