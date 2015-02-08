@@ -53,31 +53,72 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="retweet" translatesAutoresizingMaskIntoConstraints="NO" id="29E-NP-7DR">
+                        <rect key="frame" x="150" y="76" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="86O-Xq-daP"/>
+                            <constraint firstAttribute="height" constant="20" id="lGF-he-xVr"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="favorite" translatesAutoresizingMaskIntoConstraints="NO" id="BtL-hw-PYT">
+                        <rect key="frame" x="245" y="76" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="fr7-Hi-mYk"/>
+                            <constraint firstAttribute="height" constant="20" id="jAO-HR-9ET"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reply" translatesAutoresizingMaskIntoConstraints="NO" id="eWt-dF-ifd">
+                        <rect key="frame" x="55" y="76" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="gUv-yc-NKI"/>
+                            <constraint firstAttribute="height" constant="20" id="lMF-zB-eqQ"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="feB-xA-uMF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="089-9C-txr"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="6dt-Ix-qBb" secondAttribute="bottom" constant="33" id="0Ka-qj-GiZ"/>
+                    <constraint firstAttribute="bottom" secondItem="29E-NP-7DR" secondAttribute="bottom" constant="10" id="2rV-fE-BqG"/>
+                    <constraint firstAttribute="centerX" secondItem="29E-NP-7DR" secondAttribute="centerX" id="EDK-17-y8d"/>
+                    <constraint firstItem="29E-NP-7DR" firstAttribute="centerY" secondItem="eWt-dF-ifd" secondAttribute="centerY" id="EhP-0F-Ew8"/>
                     <constraint firstItem="xDh-RI-S8y" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="GVh-dg-fa7"/>
+                    <constraint firstItem="BtL-hw-PYT" firstAttribute="leading" secondItem="29E-NP-7DR" secondAttribute="trailing" constant="75" id="Npt-Nc-i5A"/>
                     <constraint firstItem="vLr-Q8-HqJ" firstAttribute="leading" secondItem="xDh-RI-S8y" secondAttribute="trailing" constant="8" id="PA1-65-5tp"/>
                     <constraint firstItem="6dt-Ix-qBb" firstAttribute="top" secondItem="tAo-hC-pNJ" secondAttribute="bottom" constant="8" id="VKM-zV-wWg"/>
                     <constraint firstAttribute="trailing" secondItem="vLr-Q8-HqJ" secondAttribute="trailing" constant="8" id="VtZ-GP-oh0"/>
                     <constraint firstItem="tAo-hC-pNJ" firstAttribute="leading" secondItem="feB-xA-uMF" secondAttribute="trailing" constant="8" id="WeI-Ll-U9h"/>
+                    <constraint firstItem="29E-NP-7DR" firstAttribute="leading" secondItem="eWt-dF-ifd" secondAttribute="trailing" constant="75" id="fD8-5H-4f7"/>
                     <constraint firstItem="6dt-Ix-qBb" firstAttribute="leading" secondItem="feB-xA-uMF" secondAttribute="trailing" constant="8" id="jhH-z1-J0q"/>
+                    <constraint firstItem="29E-NP-7DR" firstAttribute="centerY" secondItem="BtL-hw-PYT" secondAttribute="centerY" id="kac-g0-P76"/>
                     <constraint firstItem="xDh-RI-S8y" firstAttribute="leading" secondItem="tAo-hC-pNJ" secondAttribute="trailing" constant="8" id="lYV-Di-3VB"/>
                     <constraint firstItem="vLr-Q8-HqJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="pQR-yk-zla"/>
+                    <constraint firstItem="29E-NP-7DR" firstAttribute="top" secondItem="6dt-Ix-qBb" secondAttribute="bottom" constant="8" id="vqQ-fR-Ax5"/>
                     <constraint firstAttribute="trailing" secondItem="6dt-Ix-qBb" secondAttribute="trailing" constant="8" id="x9c-Sz-JMq"/>
                     <constraint firstItem="tAo-hC-pNJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="yMa-Qe-NhR"/>
                     <constraint firstItem="feB-xA-uMF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="zNt-Vx-2fD"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="0Ka-qj-GiZ"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
+                <outlet property="favoriteImageView" destination="BtL-hw-PYT" id="z80-26-UJN"/>
+                <outlet property="replyImageView" destination="eWt-dF-ifd" id="OIq-in-v02"/>
+                <outlet property="retweetImageView" destination="29E-NP-7DR" id="stz-F3-Vcv"/>
                 <outlet property="timeLabel" destination="vLr-Q8-HqJ" id="ja9-Xr-L6r"/>
                 <outlet property="tweetLabel" destination="6dt-Ix-qBb" id="Ij4-l2-1Wz"/>
                 <outlet property="twitterHandleLabel" destination="xDh-RI-S8y" id="Kx7-ah-R9m"/>
                 <outlet property="userImageView" destination="feB-xA-uMF" id="BsF-cK-jLU"/>
                 <outlet property="userNameLabel" destination="tAo-hC-pNJ" id="0we-2f-K28"/>
             </connections>
-            <point key="canvasLocation" x="353.5" y="415.5"/>
+            <point key="canvasLocation" x="96.5" y="335.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="favorite" width="60" height="60"/>
+        <image name="reply" width="40" height="40"/>
+        <image name="retweet" width="40" height="40"/>
+    </resources>
 </document>

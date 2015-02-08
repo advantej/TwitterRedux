@@ -13,7 +13,7 @@
 #import "ComposeViewController.h"
 #import "TweetDetailViewController.h"
 
-@interface TweetsViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface TweetsViewController () <UITableViewDataSource, UITableViewDelegate, TweetCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *uiRefreshControl;
 
@@ -70,6 +70,7 @@
 
     TweetCell *tweetCell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
     tweetCell.tweet = self.tweets[indexPath.row];
+    tweetCell.delegate = self;
     return tweetCell;
 }
 
@@ -98,6 +99,15 @@
     TweetDetailViewController *detailViewController = [[TweetDetailViewController alloc] init];
     detailViewController.tweet = self.tweets[indexPath.row];
     [self.navigationController pushViewController:detailViewController animated:YES];
+}
+
+#pragma mark - TweetCell delegate Methods
+
+- (void)tweetCell:(TweetCell *)tweetCell replyPressedForTweet:(Tweet *)tweet {
+
+    ComposeViewController *composeViewController = [[ComposeViewController alloc] init];
+    composeViewController.replyToTweet = tweet;
+    [self.navigationController pushViewController:composeViewController animated:YES];
 }
 
 
