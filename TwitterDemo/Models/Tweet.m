@@ -18,6 +18,8 @@
         self.idStr = dictionary[@"id_str"];
         self.text = dictionary[@"text"];
         self.author = [[User alloc] initWithDictionary:dictionary[@"user"]];
+        self.retweetCount = [dictionary[@"retweet_count"] integerValue];
+        self.favoriteCount = [dictionary[@"favorite_count"] integerValue];
 
         NSString *createdAtString = dictionary[@"created_at"];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];

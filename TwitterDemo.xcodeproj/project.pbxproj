@@ -12,6 +12,8 @@
 		8B25550B1A86AD6D00DDA2B2 /* TweetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B2555091A86AD6D00DDA2B2 /* TweetCell.xib */; };
 		8B25550F1A86DBD300DDA2B2 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B25550D1A86DBD300DDA2B2 /* ComposeViewController.m */; };
 		8B2555101A86DBD300DDA2B2 /* ComposeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B25550E1A86DBD300DDA2B2 /* ComposeViewController.xib */; };
+		8B2555141A8705BD00DDA2B2 /* TweetDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B2555121A8705BD00DDA2B2 /* TweetDetailViewController.m */; };
+		8B2555151A8705BD00DDA2B2 /* TweetDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B2555131A8705BD00DDA2B2 /* TweetDetailViewController.xib */; };
 		B320A6BCD44831EADC5FCF7F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 059A7CCC197C809A6D116295 /* libPods.a */; };
 		D527A060275C09B4A49476BE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D527A980A7B5312B856E35F9 /* main.m */; };
 		D527A21E3FA45023FF334E7B /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = D527AB1DF17231ABACC58488 /* Tweet.m */; };
@@ -48,6 +50,9 @@
 		8B25550C1A86DBD300DDA2B2 /* ComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
 		8B25550D1A86DBD300DDA2B2 /* ComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
 		8B25550E1A86DBD300DDA2B2 /* ComposeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComposeViewController.xib; sourceTree = "<group>"; };
+		8B2555111A8705BD00DDA2B2 /* TweetDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetDetailViewController.h; sourceTree = "<group>"; };
+		8B2555121A8705BD00DDA2B2 /* TweetDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetDetailViewController.m; sourceTree = "<group>"; };
+		8B2555131A8705BD00DDA2B2 /* TweetDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetDetailViewController.xib; sourceTree = "<group>"; };
 		A7D18626C6FC86FA99F0B58E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		AD045E7F966EB682E4279904 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D527A092494108F19C66C64B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -194,6 +199,9 @@
 				8B25550C1A86DBD300DDA2B2 /* ComposeViewController.h */,
 				8B25550D1A86DBD300DDA2B2 /* ComposeViewController.m */,
 				8B25550E1A86DBD300DDA2B2 /* ComposeViewController.xib */,
+				8B2555111A8705BD00DDA2B2 /* TweetDetailViewController.h */,
+				8B2555121A8705BD00DDA2B2 /* TweetDetailViewController.m */,
+				8B2555131A8705BD00DDA2B2 /* TweetDetailViewController.xib */,
 			);
 			path = TwitterDemo;
 			sourceTree = "<group>";
@@ -280,6 +288,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B2555151A8705BD00DDA2B2 /* TweetDetailViewController.xib in Resources */,
 				D527A8D0995CE920EFCF6756 /* Images.xcassets in Resources */,
 				8B2555101A86DBD300DDA2B2 /* ComposeViewController.xib in Resources */,
 				8B25550B1A86AD6D00DDA2B2 /* TweetCell.xib in Resources */,
@@ -345,6 +354,7 @@
 				D527AA93C0747BBD6791D31F /* User.m in Sources */,
 				D527A350DB25141A16F93DBE /* TweetsViewController.m in Sources */,
 				8B25550A1A86AD6D00DDA2B2 /* TweetCell.m in Sources */,
+				8B2555141A8705BD00DDA2B2 /* TweetDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
