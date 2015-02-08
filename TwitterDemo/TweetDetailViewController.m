@@ -58,7 +58,8 @@
 
     [[TwitterClient sharedInstance] reTweetTweetWithId:self.tweet.idStr completion:^(Tweet *tweet, NSError *error) {
         if (tweet != nil) {
-            self.tweet = tweet;
+            self.tweet.retweeted = YES;
+            self.tweet.retweetCount = self.tweet.retweetCount + 1;
             [self hydrateData];
         }
     }];
