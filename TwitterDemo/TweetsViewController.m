@@ -12,6 +12,8 @@
 #import "TweetCell.h"
 #import "ComposeViewController.h"
 #import "TweetDetailViewController.h"
+#import "PKRevealController/PKRevealController.h"
+#import "LeftMenuViewController.h"
 
 @interface TweetsViewController () <UITableViewDataSource, UITableViewDelegate, TweetCellDelegate, ComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -53,12 +55,17 @@
     [self refreshTweets];
 }
 
++ (UIViewController *) getWrappedTweetsController {
+    LeftMenuViewController *menuViewController = [[LeftMenuViewController alloc] init];
+    TweetsViewController *tweetsViewController = [[TweetsViewController alloc] init];
 
-+ (UINavigationController *) getWrappedTweetsController {
-    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:[[TweetsViewController alloc] init]];
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:tweetsViewController];
     nvc.navigationBar.barTintColor = [UIColor colorWithRed:64.0 / 255.0 green:153.0 / 255.0 blue:255.0 / 255.0 alpha:1];
     nvc.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
-    return nvc;
+
+    PKRevealController *revealController = [PKRevealController revealControllerWithFrontViewController:nvc leftViewController:menuViewController];
+
+    return revealController;
 }
 
 

@@ -30,6 +30,7 @@
                 <constraint firstAttribute="bottom" secondItem="jwP-Rd-khb" secondAttribute="bottom" id="hH6-0l-fcN"/>
                 <constraint firstAttribute="trailing" secondItem="jwP-Rd-khb" secondAttribute="trailing" id="qm1-2M-oJq"/>
             </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <point key="canvasLocation" x="358" y="333"/>
         </view>
     </objects>
