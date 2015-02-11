@@ -45,6 +45,10 @@
                     <constraint firstItem="8eo-f3-KdR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="xMJ-Oq-yJa"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="menuImageView" destination="8eo-f3-KdR" id="swn-JH-UAP"/>
+                <outlet property="menuLabel" destination="vfH-eg-rbU" id="5bN-sB-kLV"/>
+            </connections>
             <point key="canvasLocation" x="653" y="441"/>
         </tableViewCell>
     </objects>
