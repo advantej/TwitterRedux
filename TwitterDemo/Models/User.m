@@ -25,7 +25,7 @@ NSString * const UserDidLogoutNotification = @"UserDidLogoutNotification";
         self.idStr = dictionary[@"id_str"];
         self.name = dictionary[@"name"];
         self.screenName = dictionary[@"screen_name"];
-        self.profileImageUrl = dictionary[@"profile_image_url"];
+        self.profileImageUrl = [dictionary[@"profile_image_url"] stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
         self.tagline = dictionary[@"description"];
     }
 
