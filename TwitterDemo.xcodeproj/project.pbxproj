@@ -22,6 +22,8 @@
 		8B5D58D71A8AE2BA008491BF /* ProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B5D58D51A8AE2BA008491BF /* ProfileCell.xib */; };
 		8B5D58DB1A8AE486008491BF /* MenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5D58D91A8AE486008491BF /* MenuCell.m */; };
 		8B5D58DC1A8AE486008491BF /* MenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B5D58DA1A8AE486008491BF /* MenuCell.xib */; };
+		8B5D58E41A8B4FB7008491BF /* ProfileHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5D58E21A8B4FB7008491BF /* ProfileHeaderViewController.m */; };
+		8B5D58E51A8B4FB7008491BF /* ProfileHeaderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B5D58E31A8B4FB7008491BF /* ProfileHeaderViewController.xib */; };
 		B320A6BCD44831EADC5FCF7F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 059A7CCC197C809A6D116295 /* libPods.a */; };
 		D527A060275C09B4A49476BE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D527A980A7B5312B856E35F9 /* main.m */; };
 		D527A21E3FA45023FF334E7B /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = D527AB1DF17231ABACC58488 /* Tweet.m */; };
@@ -73,6 +75,9 @@
 		8B5D58D81A8AE486008491BF /* MenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuCell.h; sourceTree = "<group>"; };
 		8B5D58D91A8AE486008491BF /* MenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuCell.m; sourceTree = "<group>"; };
 		8B5D58DA1A8AE486008491BF /* MenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuCell.xib; sourceTree = "<group>"; };
+		8B5D58E11A8B4FB7008491BF /* ProfileHeaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileHeaderViewController.h; sourceTree = "<group>"; };
+		8B5D58E21A8B4FB7008491BF /* ProfileHeaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileHeaderViewController.m; sourceTree = "<group>"; };
+		8B5D58E31A8B4FB7008491BF /* ProfileHeaderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileHeaderViewController.xib; sourceTree = "<group>"; };
 		A7D18626C6FC86FA99F0B58E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		AD045E7F966EB682E4279904 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D527A092494108F19C66C64B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -234,6 +239,9 @@
 				8B5D58CE1A8AD530008491BF /* ProfileViewController.h */,
 				8B5D58CF1A8AD530008491BF /* ProfileViewController.m */,
 				8B5D58D01A8AD530008491BF /* ProfileViewController.xib */,
+				8B5D58E11A8B4FB7008491BF /* ProfileHeaderViewController.h */,
+				8B5D58E21A8B4FB7008491BF /* ProfileHeaderViewController.m */,
+				8B5D58E31A8B4FB7008491BF /* ProfileHeaderViewController.xib */,
 			);
 			path = TwitterDemo;
 			sourceTree = "<group>";
@@ -323,6 +331,7 @@
 				8B5D58D21A8AD530008491BF /* ProfileViewController.xib in Resources */,
 				8B2555151A8705BD00DDA2B2 /* TweetDetailViewController.xib in Resources */,
 				D527A8D0995CE920EFCF6756 /* Images.xcassets in Resources */,
+				8B5D58E51A8B4FB7008491BF /* ProfileHeaderViewController.xib in Resources */,
 				8B5D58CD1A8AC4B1008491BF /* LeftMenuViewController.xib in Resources */,
 				8B2555101A86DBD300DDA2B2 /* ComposeViewController.xib in Resources */,
 				8B5D58DC1A8AE486008491BF /* MenuCell.xib in Resources */,
@@ -395,6 +404,7 @@
 				8B2555141A8705BD00DDA2B2 /* TweetDetailViewController.m in Sources */,
 				8B5D58D11A8AD530008491BF /* ProfileViewController.m in Sources */,
 				8B5D58CC1A8AC4B1008491BF /* LeftMenuViewController.m in Sources */,
+				8B5D58E41A8B4FB7008491BF /* ProfileHeaderViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

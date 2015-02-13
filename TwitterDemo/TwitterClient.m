@@ -99,6 +99,23 @@ NSString *const kTwitterBaseUrl = @"https://api.twitter.com";
 
 }
 
+- (void)userTimelineWithScreenName:(NSString *)screenName params:(NSDictionary *)params completion:(void (^)(NSArray *tweets, NSError *error))completion {
+
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    parameters[@"screen_name"] = screenName;
+    [parameters addEntriesFromDictionary:params];
+
+    [self GET:@"1.1/statuses/user_timeline.json?count=20" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+
+        NSArray *tweets = [Tweet tweetsWithArray:responseObject];
+        completion(tweets, nil);
+
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        completion(nil, error);
+    }];
+
+}
+
 - (void)getSingleTweetWithId:(NSString *)tweetId completion:(void (^)(Tweet *tweet, NSError *error))completion {
 
     NSDictionary *params = @{@"id" : tweetId};

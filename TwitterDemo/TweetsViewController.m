@@ -14,6 +14,7 @@
 #import "TweetDetailViewController.h"
 #import "PKRevealController/PKRevealController.h"
 #import "LeftMenuViewController.h"
+#import "ProfileViewController.h"
 
 @interface TweetsViewController () <UITableViewDataSource, UITableViewDelegate, TweetCellDelegate, ComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -117,11 +118,17 @@
 #pragma mark - TweetCell delegate Methods
 
 - (void)tweetCell:(TweetCell *)tweetCell replyPressedForTweet:(Tweet *)tweet {
-
     ComposeViewController *composeViewController = [[ComposeViewController alloc] init];
     composeViewController.replyToTweet = tweet;
     [self.navigationController pushViewController:composeViewController animated:YES];
 }
+
+- (void)tweetCell:(TweetCell *)tweetCell profileRequestedForUser:(User *)user {
+    ProfileViewController *pvc = [[ProfileViewController alloc] init];
+    pvc.user = user;
+    [self.navigationController pushViewController:pvc animated:YES];
+}
+
 
 #pragma mark - ComposeViewController delegate Methods
 

@@ -14,6 +14,7 @@
 @protocol TweetCellDelegate
 
 - (void) tweetCell:(TweetCell *) tweetCell replyPressedForTweet:(Tweet *) tweet;
+- (void) tweetCell:(TweetCell *) tweetCell profileRequestedForUser:(User*) user;
 
 @end
 
