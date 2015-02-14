@@ -55,7 +55,7 @@
 #pragma mark - TableView DataSource Delegate Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+    return 3;
 }
 
 
@@ -73,6 +73,12 @@
             menuCell = [tableView dequeueReusableCellWithIdentifier:@"MenuCell"];
             menuCell.menuLabel.text = @"Home";
             return menuCell;
+        case 2:
+            menuCell = [tableView dequeueReusableCellWithIdentifier:@"MenuCell"];
+            menuCell.menuLabel.text = @"Mentions";
+            return menuCell;
+        default:
+            break;
     }
     return nil;
 }
@@ -88,11 +94,15 @@
             return size.height+1;
 
         case 1:
+        case 2:
             [self configureCell:self.dummyMenuCell forRowAtIndexPath:indexPath];
             [self.dummyMenuCell layoutIfNeeded];
 
             CGSize size1 = [self.dummyMenuCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
             return size1.height+1;
+
+        default:
+            break;
 
     }
 
@@ -118,12 +128,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-    if (indexPath.row == 1) {
+    if (indexPath.row == 0) {
         [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"user_profile_requested" object:nil]];
+    } else if (indexPath.row == 1) {
+        [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"home_requested" object:nil]];
+    } else if (indexPath.row == 2) {
+        [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"mentions_timeline_requested" object:nil]];
     }
-
 }
-
 
 #pragma mark - Private Methods
 

@@ -30,11 +30,13 @@
 		D527A350DB25141A16F93DBE /* TweetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D527A31796989F84E2EC025C /* TweetsViewController.m */; };
 		D527A4540CCF1BB629C2A8C3 /* TwitterClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D527AF3BBA4CFC3D8E39D8D8 /* TwitterClient.m */; };
 		D527A66CCF8BACBDE84CF47A /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D527A37C8755BE5EAC1BE24E /* LoginViewController.m */; };
+		D527A7A192EC8A14199C54CD /* MentionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D527AE900FBF449B612EB98E /* MentionsViewController.xib */; };
 		D527A8D0995CE920EFCF6756 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D527A9967BF2AD62D81865D1 /* Images.xcassets */; };
 		D527AA93C0747BBD6791D31F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D527AEEAC05DC8A5D846451A /* User.m */; };
 		D527AAD3228E8D027D5B5811 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D527AE0FC6CE5454E164E43B /* LoginViewController.xib */; };
 		D527ACE38AB6BBE1D0ABAF2E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D527A4C7CF7CA79800B1EEEA /* AppDelegate.m */; };
 		D527AE9224A12694833E297F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D527A8E36F0896F05909F1B0 /* LaunchScreen.xib */; };
+		D527AEFB4440F95A35DAE21A /* MentionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D527A05B1D5F69B2746FE380 /* MentionsViewController.m */; };
 		D527AF9FF8C02F7A4C39EE82 /* TweetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D527A518C91DCC724E9F9405 /* TweetsViewController.xib */; };
 /* End PBXBuildFile section */
 
@@ -80,9 +82,11 @@
 		8B5D58E31A8B4FB7008491BF /* ProfileHeaderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileHeaderViewController.xib; sourceTree = "<group>"; };
 		A7D18626C6FC86FA99F0B58E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		AD045E7F966EB682E4279904 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		D527A05B1D5F69B2746FE380 /* MentionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MentionsViewController.m; sourceTree = "<group>"; };
 		D527A092494108F19C66C64B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		D527A12CC181B89E3C38D375 /* Tweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tweet.h; sourceTree = "<group>"; };
 		D527A1E5321DCB9680A4AB37 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
+		D527A265EAAFAFEE5D2D7D16 /* MentionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MentionsViewController.h; sourceTree = "<group>"; };
 		D527A31796989F84E2EC025C /* TweetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetsViewController.m; sourceTree = "<group>"; };
 		D527A37C8755BE5EAC1BE24E /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		D527A40810588AD03900C9F7 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -96,6 +100,7 @@
 		D527AB1DF17231ABACC58488 /* Tweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tweet.m; sourceTree = "<group>"; };
 		D527AD0B17233F36CCC2F1EA /* TweetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetsViewController.h; sourceTree = "<group>"; };
 		D527AE0FC6CE5454E164E43B /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		D527AE900FBF449B612EB98E /* MentionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MentionsViewController.xib; sourceTree = "<group>"; };
 		D527AEEAC05DC8A5D846451A /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		D527AF3BBA4CFC3D8E39D8D8 /* TwitterClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterClient.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -242,6 +247,9 @@
 				8B5D58E11A8B4FB7008491BF /* ProfileHeaderViewController.h */,
 				8B5D58E21A8B4FB7008491BF /* ProfileHeaderViewController.m */,
 				8B5D58E31A8B4FB7008491BF /* ProfileHeaderViewController.xib */,
+				D527A265EAAFAFEE5D2D7D16 /* MentionsViewController.h */,
+				D527A05B1D5F69B2746FE380 /* MentionsViewController.m */,
+				D527AE900FBF449B612EB98E /* MentionsViewController.xib */,
 			);
 			path = TwitterDemo;
 			sourceTree = "<group>";
@@ -340,6 +348,7 @@
 				D527AAD3228E8D027D5B5811 /* LoginViewController.xib in Resources */,
 				D527AF9FF8C02F7A4C39EE82 /* TweetsViewController.xib in Resources */,
 				8B5D58D71A8AE2BA008491BF /* ProfileCell.xib in Resources */,
+				D527A7A192EC8A14199C54CD /* MentionsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +414,7 @@
 				8B5D58D11A8AD530008491BF /* ProfileViewController.m in Sources */,
 				8B5D58CC1A8AC4B1008491BF /* LeftMenuViewController.m in Sources */,
 				8B5D58E41A8B4FB7008491BF /* ProfileHeaderViewController.m in Sources */,
+				D527AEFB4440F95A35DAE21A /* MentionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

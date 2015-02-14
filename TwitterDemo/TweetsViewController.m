@@ -12,8 +12,6 @@
 #import "TweetCell.h"
 #import "ComposeViewController.h"
 #import "TweetDetailViewController.h"
-#import "PKRevealController/PKRevealController.h"
-#import "LeftMenuViewController.h"
 #import "ProfileViewController.h"
 
 @interface TweetsViewController () <UITableViewDataSource, UITableViewDelegate, TweetCellDelegate, ComposeViewControllerDelegate>
@@ -52,31 +50,19 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     [self.tableView insertSubview:self.uiRefreshControl atIndex:0];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onUserProfileRequested:) name:@"user_profile_requested" object:nil];
-
     [self.tableView registerNib:[UINib nibWithNibName:@"TweetCell" bundle:nil] forCellReuseIdentifier:@"TweetCell"];
     [self refreshTweets];
 }
 
-- (void)onUserProfileRequested:(id)onUserProfileRequested {
-    ProfileViewController *pvc = [[ProfileViewController alloc] init];
-    pvc.user = [User currentUser];
-    [self.navigationController pushViewController:pvc animated:YES];
-}
-
 + (UIViewController *) getWrappedTweetsController {
-    LeftMenuViewController *menuViewController = [[LeftMenuViewController alloc] init];
     TweetsViewController *tweetsViewController = [[TweetsViewController alloc] init];
 
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:tweetsViewController];
     nvc.navigationBar.barTintColor = [UIColor colorWithRed:64.0 / 255.0 green:153.0 / 255.0 blue:255.0 / 255.0 alpha:1];
     nvc.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
 
-    PKRevealController *revealController = [PKRevealController revealControllerWithFrontViewController:nvc leftViewController:menuViewController];
-
-    return revealController;
+    return nvc;
 }
-
 
 #pragma mark - TableView DataSource Delegate Methods
 
