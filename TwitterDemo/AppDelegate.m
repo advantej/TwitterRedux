@@ -6,13 +6,13 @@
 //  Copyright (c) 2015 Yahoo!. All rights reserved.
 //
 
+#import <PKRevealController/PKRevealController.h>
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "TwitterClient.h"
 #import "User.h"
 #import "Tweet.h"
 #import "TweetsViewController.h"
-#import "PKRevealController.h"
 #import "LeftMenuViewController.h"
 #import "ProfileViewController.h"
 #import "MentionsViewController.h"
@@ -21,7 +21,6 @@
 
 @property (nonatomic, strong) PKRevealController *pkRevealController;
 @property (nonatomic, strong) UIViewController *homeViewController;
-@property (nonatomic, strong) UIViewController *leftMenuViewController;
 @property (nonatomic, strong) ProfileViewController *profileViewController;
 @property (nonatomic, strong) UIViewController *mentionsViewController;
 
@@ -43,8 +42,7 @@
     User *user = [User currentUser];
     if (user != nil) {
         NSLog(@"Welcome %@", user.name);
-        //self.pkRevealController = (PKRevealController *) [TweetsViewController getWrappedTweetsController];
-        self.pkRevealController = [PKRevealController revealControllerWithFrontViewController:[TweetsViewController getWrappedTweetsController] leftViewController:[[LeftMenuViewController alloc] init]];
+        self.pkRevealController = (PKRevealController *) [self viewControllerAfterSuccessfulLogin];
         self.window.rootViewController = self.pkRevealController;
     } else {
         NSLog(@"User not loggged in");
@@ -53,6 +51,11 @@
 
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+-(UIViewController *) viewControllerAfterSuccessfulLogin{
+    self.pkRevealController = [PKRevealController revealControllerWithFrontViewController:[TweetsViewController getWrappedTweetsController] leftViewController:[[LeftMenuViewController alloc] init]];
+    return self.pkRevealController;
 }
 
 - (void)onHomeViewRequested:(id)onMentionsRequested {
@@ -68,7 +71,6 @@
         self.mentionsViewController = [self getNvcWrappedControllerForViewController:[[MentionsViewController alloc] init]];
     }
     [self.pkRevealController setFrontViewController:self.mentionsViewController];
-//    [self.pkRevealController showViewController:self.mentionsViewController];
     [self.pkRevealController resignPresentationModeEntirely:YES animated:YES completion:nil];
 }
 
@@ -78,7 +80,6 @@
     }
     self.profileViewController.user = [User currentUser];
     [self.pkRevealController setFrontViewController:self.profileViewController];
-//    [self.pkRevealController showViewController:self.profileViewController];
     [self.pkRevealController resignPresentationModeEntirely:YES animated:YES completion:nil];
 }
 
