@@ -52,8 +52,16 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     [self.tableView insertSubview:self.uiRefreshControl atIndex:0];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onUserProfileRequested:) name:@"user_profile_requested" object:nil];
+
     [self.tableView registerNib:[UINib nibWithNibName:@"TweetCell" bundle:nil] forCellReuseIdentifier:@"TweetCell"];
     [self refreshTweets];
+}
+
+- (void)onUserProfileRequested:(id)onUserProfileRequested {
+    ProfileViewController *pvc = [[ProfileViewController alloc] init];
+    pvc.user = [User currentUser];
+    [self.navigationController pushViewController:pvc animated:YES];
 }
 
 + (UIViewController *) getWrappedTweetsController {

@@ -65,7 +65,9 @@
     [[TwitterClient sharedInstance] userTimelineWithScreenName:self.user.screenName params:nil completion:^(NSArray *tweets, NSError *error) {
         [self.tweets removeAllObjects];
         [self.tweets addObjectsFromArray:tweets];
-        self.tableView.tableHeaderView = self.profileHeaderViewController.view;
+        UIView *headerView = self.profileHeaderViewController.view;
+        headerView.frame = CGRectMake(0, 0, 320, 245);
+        self.tableView.tableHeaderView = headerView;
         [self.tableView reloadData];
     }];
 }

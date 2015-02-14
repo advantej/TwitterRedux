@@ -12,8 +12,11 @@
 #import "User.h"
 #import "Tweet.h"
 #import "TweetsViewController.h"
+#import "PKRevealController.h"
 
 @interface AppDelegate ()
+
+@property (nonatomic, strong) PKRevealController *pkRevealController;
 
 @end
 
@@ -26,11 +29,13 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogout) name:UserDidLogoutNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onUserProfileRequested:) name:@"user_profile_requested" object:nil];
 
     User *user = [User currentUser];
     if (user != nil) {
         NSLog(@"Welcome %@", user.name);
-        self.window.rootViewController = [TweetsViewController getWrappedTweetsController];
+        self.pkRevealController = (PKRevealController *) [TweetsViewController getWrappedTweetsController];
+        self.window.rootViewController = self.pkRevealController;
     } else {
         NSLog(@"User not loggged in");
         self.window.rootViewController = [[LoginViewController alloc] init];
@@ -38,6 +43,11 @@
 
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)onUserProfileRequested:(id)onUserProfileRequested {
+    [self.pkRevealController resignPresentationModeEntirely:YES animated:YES completion:nil];
+
 }
 
 - (void)userDidLogout {

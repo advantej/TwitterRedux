@@ -21,7 +21,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="243"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999999999999973" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ltf-iR-oMQ">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.59999999999999964" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ltf-iR-oMQ">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="175"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="175" id="GDI-UL-hf0"/>
