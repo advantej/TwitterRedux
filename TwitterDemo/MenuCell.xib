@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="MenuCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8eo-f3-KdR">
+                        <rect key="frame" x="8" y="12" width="20" height="19"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="Ea7-Xc-LEc"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="19" id="UYv-Z6-1yg"/>
+                            <constraint firstAttribute="width" constant="20" id="XZi-cv-EWR"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="bl2-cE-GqK"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Ea7-Xc-LEc"/>
+                            </mask>
+                        </variation>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vfH-eg-rbU">
+                        <rect key="frame" x="36" y="11" width="42" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="Rk8-hY-Wwz"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="vfH-eg-rbU" firstAttribute="centerY" secondItem="8eo-f3-KdR" secondAttribute="centerY" id="1QX-hm-0u5"/>
+                    <constraint firstItem="8eo-f3-KdR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="L6G-lX-1Z8"/>
+                    <constraint firstAttribute="bottom" secondItem="8eo-f3-KdR" secondAttribute="bottom" constant="12" id="Tp9-Ju-Th0"/>
+                    <constraint firstItem="vfH-eg-rbU" firstAttribute="leading" secondItem="8eo-f3-KdR" secondAttribute="trailing" constant="8" id="V5z-wk-Uyf"/>
+                    <constraint firstItem="8eo-f3-KdR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="xMJ-Oq-yJa"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="menuImageView" destination="8eo-f3-KdR" id="swn-JH-UAP"/>
+                <outlet property="menuLabel" destination="vfH-eg-rbU" id="5bN-sB-kLV"/>
+            </connections>
+            <point key="canvasLocation" x="653" y="441"/>
+        </tableViewCell>
+    </objects>
+</document>

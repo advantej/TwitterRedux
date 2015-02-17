@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "TwitterClient.h"
 #import "TweetsViewController.h"
+#import "AppDelegate.h"
 
 @interface LoginViewController ()
 
@@ -30,7 +31,8 @@
     [[TwitterClient sharedInstance] loginWithCompletion:^(User *user, NSError *error) {
        if (user != nil) {
            //Modally present the tweets view
-           [self presentViewController:[TweetsViewController getWrappedTweetsController] animated:YES completion:nil];
+           AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+           [self presentViewController:[appDelegate viewControllerAfterSuccessfulLogin] animated:YES completion:nil];
 
        } else {
            // Present error view

@@ -6,14 +6,23 @@
 //  Copyright (c) 2015 Yahoo!. All rights reserved.
 //
 
+#import <PKRevealController/PKRevealController.h>
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "TwitterClient.h"
 #import "User.h"
 #import "Tweet.h"
 #import "TweetsViewController.h"
+#import "LeftMenuViewController.h"
+#import "ProfileViewController.h"
+#import "MentionsViewController.h"
 
 @interface AppDelegate ()
+
+@property (nonatomic, strong) PKRevealController *pkRevealController;
+@property (nonatomic, strong) UIViewController *homeViewController;
+@property (nonatomic, strong) ProfileViewController *profileViewController;
+@property (nonatomic, strong) UIViewController *mentionsViewController;
 
 @end
 
@@ -26,12 +35,15 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogout) name:UserDidLogoutNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onHomeViewRequested:) name:@"home_requested" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onProfileRequested:) name:@"user_profile_requested" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onMentionsRequested:) name:@"mentions_timeline_requested" object:nil];
 
     User *user = [User currentUser];
     if (user != nil) {
         NSLog(@"Welcome %@", user.name);
-        UINavigationController *nvc = [TweetsViewController getWrappedTweetsController];
-        self.window.rootViewController = nvc;
+        self.pkRevealController = (PKRevealController *) [self viewControllerAfterSuccessfulLogin];
+        self.window.rootViewController = self.pkRevealController;
     } else {
         NSLog(@"User not loggged in");
         self.window.rootViewController = [[LoginViewController alloc] init];
@@ -41,9 +53,47 @@
     return YES;
 }
 
+-(UIViewController *) viewControllerAfterSuccessfulLogin{
+    self.pkRevealController = [PKRevealController revealControllerWithFrontViewController:[TweetsViewController getWrappedTweetsController] leftViewController:[[LeftMenuViewController alloc] init]];
+    return self.pkRevealController;
+}
+
+- (void)onHomeViewRequested:(id)onMentionsRequested {
+    if (self.homeViewController == nil) {
+       self.homeViewController = [self getNvcWrappedControllerForViewController:[[TweetsViewController alloc] init]];
+    }
+    [self.pkRevealController setFrontViewController:self.homeViewController];
+    [self.pkRevealController resignPresentationModeEntirely:YES animated:YES completion:nil];
+}
+
+- (void)onMentionsRequested:(id)onMentionsRequested {
+    if (self.mentionsViewController == nil) {
+        self.mentionsViewController = [self getNvcWrappedControllerForViewController:[[MentionsViewController alloc] init]];
+    }
+    [self.pkRevealController setFrontViewController:self.mentionsViewController];
+    [self.pkRevealController resignPresentationModeEntirely:YES animated:YES completion:nil];
+}
+
+- (void)onProfileRequested:(id)o{
+    if (self.profileViewController == nil) {
+        self.profileViewController = [[ProfileViewController alloc] init];
+    }
+    self.profileViewController.user = [User currentUser];
+    [self.pkRevealController setFrontViewController:self.profileViewController];
+    [self.pkRevealController resignPresentationModeEntirely:YES animated:YES completion:nil];
+}
+
+- (UIViewController *) getNvcWrappedControllerForViewController:(UIViewController *) controller {
+
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:controller];
+    nvc.navigationBar.barTintColor = [UIColor colorWithRed:64.0 / 255.0 green:153.0 / 255.0 blue:255.0 / 255.0 alpha:1];
+    nvc.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
+
+    return nvc;
+}
+
 - (void)userDidLogout {
     self.window.rootViewController = [[LoginViewController alloc] init];
-
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

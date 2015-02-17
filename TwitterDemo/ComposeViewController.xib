@@ -112,7 +112,7 @@
         </view>
     </objects>
     <resources>
-        <image name="cross" width="400" height="400"/>
+        <image name="cross" width="40" height="40"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

@@ -12,6 +12,7 @@
 #import "TweetCell.h"
 #import "ComposeViewController.h"
 #import "TweetDetailViewController.h"
+#import "ProfileViewController.h"
 
 @interface TweetsViewController () <UITableViewDataSource, UITableViewDelegate, TweetCellDelegate, ComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -53,14 +54,15 @@
     [self refreshTweets];
 }
 
++ (UIViewController *) getWrappedTweetsController {
+    TweetsViewController *tweetsViewController = [[TweetsViewController alloc] init];
 
-+ (UINavigationController *) getWrappedTweetsController {
-    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:[[TweetsViewController alloc] init]];
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:tweetsViewController];
     nvc.navigationBar.barTintColor = [UIColor colorWithRed:64.0 / 255.0 green:153.0 / 255.0 blue:255.0 / 255.0 alpha:1];
     nvc.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
+
     return nvc;
 }
-
 
 #pragma mark - TableView DataSource Delegate Methods
 
@@ -110,11 +112,17 @@
 #pragma mark - TweetCell delegate Methods
 
 - (void)tweetCell:(TweetCell *)tweetCell replyPressedForTweet:(Tweet *)tweet {
-
     ComposeViewController *composeViewController = [[ComposeViewController alloc] init];
     composeViewController.replyToTweet = tweet;
     [self.navigationController pushViewController:composeViewController animated:YES];
 }
+
+- (void)tweetCell:(TweetCell *)tweetCell profileRequestedForUser:(User *)user {
+    ProfileViewController *pvc = [[ProfileViewController alloc] init];
+    pvc.user = user;
+    [self.navigationController pushViewController:pvc animated:YES];
+}
+
 
 #pragma mark - ComposeViewController delegate Methods
 

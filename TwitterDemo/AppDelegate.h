@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class PKRevealController;
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
 
+- (UIViewController *)viewControllerAfterSuccessfulLogin;
 @end
 

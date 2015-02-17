@@ -90,6 +90,15 @@
     [self.replyImageView addGestureRecognizer:singleTapReply];
     [self.replyImageView setMultipleTouchEnabled:YES];
     [self.replyImageView setUserInteractionEnabled:YES];
+
+    UITapGestureRecognizer *singleTapUser = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onUserProfilePressed)];
+    [self.userImageView addGestureRecognizer:singleTapUser];
+    [self.userImageView setMultipleTouchEnabled:YES];
+    [self.userImageView setUserInteractionEnabled:YES];
+}
+
+- (void)onUserProfilePressed {
+    [self.delegate tweetCell:self profileRequestedForUser:self.tweet.author];
 }
 
 - (void)onRetweetPressed {
